@@ -24,11 +24,11 @@ class ParticipateInForumTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $this->be($user = factory(\App\User::class)->create());
+        $this->signIn();
 
-        $thread = factory(\App\Thread::class)->create();
+        $thread = create(\App\Thread::class);
 
-        $reply = factory(\App\Reply::class)->make();
+        $reply = make(\App\Reply::class);
         $this->post($thread->path() . '/replies', $reply->toArray());
 
         $this->get($thread->path())
